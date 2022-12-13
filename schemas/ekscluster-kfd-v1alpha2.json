@@ -10,7 +10,9 @@
         },
         "kind": {
             "type": "string",
-            "enum": ["EKSCluster"]
+            "enum": [
+                "EKSCluster"
+            ]
         },
         "metadata": {
             "$ref": "#/$defs/Metadata"
@@ -72,7 +74,6 @@
                 "toolsConfiguration"
             ]
         },
-
         "Spec.ToolsConfiguration": {
             "type": "object",
             "additionalProperties": false,
@@ -129,7 +130,6 @@
                 "region"
             ]
         },
-
         "Spec.Infrastructure": {
             "type": "object",
             "additionalProperties": false,
@@ -236,24 +236,9 @@
             "type": "object",
             "additionalProperties": false,
             "properties": {
-                "publicKeys": {
-                    "type": "array",
-                    "items": {
-                        "anyOf": [
-                            {
-                                "$ref": "#/$defs/Types.SshPubKey"
-                            },
-                            {
-                                "$ref": "#/$defs/Types.FileRef"
-                            }
-                        ]
-                    }
-                },
-                "githubUsersName": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    }
+                "publicKey": {
+                    "type": "object",
+                    "$ref": "#/$defs/Types.SshPubKey"
                 },
                 "allowedFromCidrs": {
                     "type": "array",
@@ -264,11 +249,9 @@
             },
             "required": [
                 "allowedFromCidrs",
-                "githubUsersName",
-                "publicKeys"
+                "publicKey"
             ]
         },
-
         "Spec.Kubernetes": {
             "type": "object",
             "additionalProperties": false,
@@ -458,7 +441,10 @@
                 },
                 "type": {
                     "type": "string",
-                    "enum": ["ingress", "egress"]
+                    "enum": [
+                        "ingress",
+                        "egress"
+                    ]
                 },
                 "tags": {
                     "$ref": "#/$defs/Types.AwsTags"
@@ -576,7 +562,6 @@
                 "username"
             ]
         },
-
         "Spec.Distribution": {
             "type": "object",
             "additionalProperties": false,
@@ -711,7 +696,10 @@
             "properties": {
                 "type": {
                     "type": "string",
-                    "enum": ["single", "dual"]
+                    "enum": [
+                        "single",
+                        "dual"
+                    ]
                 },
                 "tls": {
                     "$ref": "#/$defs/Spec.Distribution.Modules.Ingress.Nginx.TLS"
@@ -728,7 +716,11 @@
             "properties": {
                 "provider": {
                     "type": "string",
-                    "enum": ["certManager", "secret", "none"]
+                    "enum": [
+                        "certManager",
+                        "secret",
+                        "none"
+                    ]
                 },
                 "secret": {
                     "$ref": "#/$defs/Spec.Distribution.Modules.Ingress.Nginx.TLS.Secret"
@@ -800,7 +792,10 @@
                 },
                 "type": {
                     "type": "string",
-                    "enum": ["dns01", "http01"]
+                    "enum": [
+                        "dns01",
+                        "http01"
+                    ]
                 },
                 "route53": {
                     "$ref": "#/$defs/Spec.Distribution.Modules.Ingress.ClusterIssuer.Route53"
@@ -902,7 +897,10 @@
             "properties": {
                 "type": {
                     "type": "string",
-                    "enum": ["single", "triple"]
+                    "enum": [
+                        "single",
+                        "triple"
+                    ]
                 },
                 "resources": {
                     "$ref": "#/$defs/Types.KubeResources"
@@ -1043,7 +1041,6 @@
                 }
             }
         },
-
         "Spec.Distribution.Modules.Auth.Overrides": {
             "type": "object",
             "additionalProperties": false,
@@ -1052,7 +1049,10 @@
                     "$ref": "#/$defs/Types.KubeNodeSelector"
                 },
                 "tolerations": {
-                    "type": ["array", "null"],
+                    "type": [
+                        "array",
+                        "null"
+                    ],
                     "items": {
                         "$ref": "#/$defs/Types.KubeToleration"
                     }
@@ -1087,7 +1087,11 @@
             "properties": {
                 "type": {
                     "type": "string",
-                    "enum": ["none", "basicAuth", "sso"]
+                    "enum": [
+                        "none",
+                        "basicAuth",
+                        "sso"
+                    ]
                 },
                 "basicAuth": {
                     "$ref": "#/$defs/Spec.Distribution.Modules.Auth.Provider.BasicAuth"
@@ -1210,7 +1214,6 @@
                 "region"
             ]
         },
-
         "Types.SemVer": {
             "type": "string",
             "pattern": "^v[0-9]+\\.[0-9]+\\.[0-9]+$"
@@ -1286,7 +1289,9 @@
         },
         "Types.AwsTags": {
             "type": "object",
-            "additionalProperties": { "type": "string" }
+            "additionalProperties": {
+                "type": "string"
+            }
         },
         "Types.AwsIpProtocol": {
             "type": "string",
@@ -1295,7 +1300,9 @@
         },
         "Types.KubeLabels": {
             "type": "object",
-            "additionalProperties": { "type": "string" }
+            "additionalProperties": {
+                "type": "string"
+            }
         },
         "Types.KubeTaints": {
             "type": "array",
@@ -1305,8 +1312,13 @@
             }
         },
         "Types.KubeNodeSelector": {
-            "type": ["object", "null"],
-            "additionalProperties": { "type": "string" }
+            "type": [
+                "object",
+                "null"
+            ],
+            "additionalProperties": {
+                "type": "string"
+            }
         },
         "Types.KubeToleration": {
             "type": "object",
@@ -1314,7 +1326,11 @@
             "properties": {
                 "effect": {
                     "type": "string",
-                    "enum": ["NoSchedule", "PreferNoSchedule", "NoExecute"]
+                    "enum": [
+                        "NoSchedule",
+                        "PreferNoSchedule",
+                        "NoExecute"
+                    ]
                 },
                 "key": {
                     "type": "string"
@@ -1367,7 +1383,10 @@
                     "$ref": "#/$defs/Types.KubeNodeSelector"
                 },
                 "tolerations": {
-                    "type": ["array", "null"],
+                    "type": [
+                        "array",
+                        "null"
+                    ],
                     "items": {
                         "$ref": "#/$defs/Types.KubeToleration"
                     }
