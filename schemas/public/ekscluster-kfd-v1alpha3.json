@@ -1,15 +1,14 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "$id": "https://schema.sighup.io/kfd/ekscluster-kfd-v1alpha2-public.json",
+    "$id": "https://schema.sighup.io/kfd/ekscluster-kfd-v1alpha3-public.json",
     "description": "A Fury Cluster deployed through AWS's Elastic Kubernetes Service",
-    "title": "v1alpha2",
     "type": "object",
     "properties": {
         "apiVersion": {
             "type": "string",
             "pattern": "^kfd\\.sighup\\.io/v\\d+((alpha|beta)\\d+)?$"
         },
-        "kind": {
+        "kindo": {
             "type": "string",
             "enum": ["EKSCluster"]
         },
@@ -47,8 +46,7 @@
             "additionalProperties": false,
             "properties": {
                 "distributionVersion": {
-                    "type": "string",
-                    "minLength": 1
+                    "$ref": "#/$defs/Types.SemVer"
                 },
                 "region": {
                     "$ref": "#/$defs/Types.AwsRegion"
@@ -1887,17 +1885,13 @@
                 "ap-northeast-2",
                 "ap-northeast-3",
                 "ap-south-1",
-                "ap-south-2",
                 "ap-southeast-1",
                 "ap-southeast-2",
                 "ap-southeast-3",
-                "ap-southeast-4",
                 "ca-central-1",
                 "eu-central-1",
-                "eu-central-2",
                 "eu-north-1",
                 "eu-south-1",
-                "eu-south-2",
                 "eu-west-1",
                 "eu-west-2",
                 "eu-west-3",
@@ -1906,8 +1900,6 @@
                 "sa-east-1",
                 "us-east-1",
                 "us-east-2",
-                "us-gov-east-1",
-                "us-gov-west-1",
                 "us-west-1",
                 "us-west-2"
             ]
